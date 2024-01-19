@@ -1,20 +1,40 @@
+// Example 1:
+//
+// Input: arr = [2,1]
+// Output: false
+// Example 2:
+//
+// Input: arr = [3,5,5]
+// Output: false
+// Example 3:
+//
+// Input: arr = [0,3,2,1]
+// Output: true
+
+const arr = [0,1,2,3,1,0];
+
 function validMountainArray(arr: number[]): boolean {
-    if (arr.length <= 3) {
-        return false;
-    }
+    if (arr.length < 3) return false;
 
-    for(let index = 0; index < arr.length; index++){
+    let peaked = false;
 
-        const prevItem = arr[index - 1],
-            currentItem = arr[index],
-            nextItem = arr[index + 1];
+    for (let i = 1; i < arr.length; i++) {
+        let prevItem = arr[i - 1],
+            currentItem = arr[i];
 
-        const flatMount = currentItem === prevItem
+        if (currentItem === prevItem) return false;
 
-        if(!flatMount && prevItem < currentItem){
-            continue
-        } else if (!flatMount && currentItem > nextItem){
-            return true
+        if (!peaked) {
+            if (currentItem < prevItem) {
+                if (i === 1) return false; // Исключаем случай восходящей последовательности в начале
+                peaked = true;
+            }
+        } else {
+            if (currentItem >= prevItem) return false;
         }
     }
-};
+
+    return peaked; // Вернем tru
+}
+
+validMountainArray(arr)

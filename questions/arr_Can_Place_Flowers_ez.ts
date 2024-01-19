@@ -1,25 +1,21 @@
 // Input: flowerbed = [1,0,0,0,1], n = 1
 // Output: true
-const flowerbed = [1,0,0,0,1],
-      n = 1
+const flowerbed = [1, 0, 0, 0, 1],
+    n = 1
 
 const canPlaceFlowers2 = (flowerbed, n) => {
-    let findPlace = 0;
+    let places = 0;
 
-    for (let i = 0; i < flowerbed.length; i++) {
+    for (let i = 1; i < flowerbed.length; i++) {
+        const prevItem = flowerbed[i - 1],
+            currentItem = flowerbed[i],
+            nextItem = flowerbed[i + 1];
 
-        const prevIndex = i - 1,
-            middleIndex = i,
-            nextIndex = i + 1;
-
-        if((!flowerbed[prevIndex])
-            && (!flowerbed[middleIndex])
-            && (!flowerbed[nextIndex])) {
-            findPlace++
+        if (!prevItem && !currentItem && !nextItem) {
+            places++
         }
     }
-
-    return findPlace >= n;
+    return places >= n
 };
 
 canPlaceFlowers2(flowerbed, n)
