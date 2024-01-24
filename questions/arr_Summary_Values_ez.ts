@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/summary-ranges/description/
 // Example 1:
 //
 // Input: nums = [0,1,2,4,5,7]
@@ -34,6 +35,6 @@ function summaryRanges(nums: number[]): string[] {
     }
 
     return result
-};
+}
 
 summaryRanges(nums);
