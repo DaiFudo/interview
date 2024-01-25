@@ -27,7 +27,7 @@ function validMountainArray(arr: number[]): boolean {
 
         if (!peaked) {
             if (currentItem < prevItem) {
-                if (i === 1) return false; // Исключаем случай восходящей последовательности в начале
+                if (i === 1) return false;
                 peaked = true;
             }
         } else {
@@ -35,7 +35,7 @@ function validMountainArray(arr: number[]): boolean {
         }
     }
 
-    return peaked; // Вернем tru
+    return peaked;
 }
 
 validMountainArray(arr)
