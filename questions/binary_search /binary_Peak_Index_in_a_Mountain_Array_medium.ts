@@ -12,26 +12,59 @@
 // Input: arr = [0,10,5,2]
 // Output: 1
 
-// const arr = [3,4,5,1]
-// // Output: 1
+const arr = [0, 2, 1, 0]
+
+// Output: 1
+function peakIndexInMountainArray(arr: number[]): number {
+    if (arr.length <= 3) return 1;
+
+    let index = 0;
+    while (arr[index] < arr[index + 1]) index += 1
+    return index
+}
+
+peakIndexInMountainArray(arr)
+
+// Option 1
 // function peakIndexInMountainArray(arr: number[]): number {
-//     if (arr.length <= 3 ) return 1
+//     if (arr.length <= 3) return 1;
 //
-//     let isHill = 0
+//     let peaked = false;
+//     let index = 0;
+//     for (let i = 1; i < arr.length; i++) {
+//         let prevItem = arr[i - 1],
+//             currentItem = arr[i];
 //
-//     for(let index = 1; index < arr.length; index++){
-//         let prevStep = arr[index - 1],
-//             currStep = arr[index],
-//             nextStep = arr[index + 1];
+//         if (currentItem === prevItem) return 1;
 //
-//         if(currStep > prevStep)
-//
-//         // if(prevStep < currStep) isHill += index
-//         // if( arr.length - 1 !== index && currStep > nextStep) isHill = index - 1
+//         if (!peaked) {
+//             if (currentItem < prevItem) {
+//                 if (i === 1) return 1;
+//                 peaked = true;
+//                 index = i - 1;
+//             }
+//         } else {
+//             if (currentItem >= prevItem) return 1;
+//         }
 //     }
 //
-//     return isHill
-// }
+//     return index;
+// };
 //
-// peakIndexInMountainArray(arr)
-
+//
+// Option 2
+// function peakIndexInMountainArray(arr: number[]): number {
+//     let [left, right] = [0, arr.length - 1];
+//
+//     while (left !== right) {
+//         const mid = right - Math.floor((right - left) / 2);
+//         if (arr[mid] > arr[mid + 1]) {
+//             right = mid;
+//         }
+//         if (arr[mid] > arr[mid - 1]) {
+//             left = mid
+//         }
+//     }
+//
+//     return left;
+// }
